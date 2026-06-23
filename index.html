@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Snakes and Ladders</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>🐍 Snakes and Ladders 🪜</h1>
+<p class="sub">First to reach 100 wins!</p>
+<div class="wrap">
+  <div class="boardbox"><div class="board" id="board">
+    <div class="grid" id="grid"></div>
+    <svg class="over" id="svg" viewBox="0 0 100 100"></svg>
+  </div></div>
+  <div class="side">
+    <div class="card players">
+      <div class="pl" id="pl0"><b><i class="dot" style="background:var(--p1)"></i>Krish</b><span id="pos0">Position 0</span></div>
+      <div class="pl" id="pl1"><b><i class="dot" style="background:var(--p2)"></i>Kunjan</b><span id="pos1">Position 0</span></div>
+    </div>
+    <div class="card dicearea">
+      <div class="dice" id="dice" aria-live="polite">🎲</div>
+      <div><button id="roll">Roll dice</button><p id="rolled" style="margin:8px 0 0;color:var(--muted)">Roll to start</p></div>
+      <div class="big" id="big" aria-hidden="true">–</div>
+    </div>
+    <div class="card log" id="log" aria-live="polite"></div>
+    <div class="card"><ol class="rules">
+      <li>You move as per your dice roll.</li>
+      <li>Snakes: 14, 28, 43, 51, 63, 68, 77, 83, 90, 99.<br>Ladders: 2, 8, 16, 27, 41, 45, 65, 73.</li>
+      <li>You must land exactly on 100 to win.</li>
+    </ol></div>
+  </div>
+</div>
+<div class="win" id="win"><div><h2 id="winTxt"></h2><button id="again">Play again</button></div></div>
+
+<script src="script.js"></script>
+</body>
+</html>
