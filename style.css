@@ -1,0 +1,59 @@
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#1b1640;--panel:#2a2360;--ink:#fff6e0;--muted:#b9b0e6;
+  --c1:#f4d58d;--c2:#8fd6b0;--snake:#e4572e;--ladder:#3fae6a;
+  --p1:#ff6b6b;--p2:#4ecdc4;--btn:#ffb703;--btnink:#2b1d00;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#fdf1d6;--panel:#fffaf0;--ink:#2a2360;--muted:#6c63a8;--c1:#f7e1a6;--c2:#bfe6cf;}}
+:root[data-theme="light"]{--bg:#fdf1d6;--panel:#fffaf0;--ink:#2a2360;--muted:#6c63a8;--c1:#f7e1a6;--c2:#bfe6cf;}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Fredoka','Trebuchet MS',sans-serif;
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:16px}
+h1{margin:4px 0 2px;font-size:clamp(1.6rem,5vw,2.4rem);font-weight:700;letter-spacing:.5px}
+.sub{margin:0 0 14px;color:var(--muted)}
+.wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;align-items:flex-start;width:100%;max-width:980px}
+.boardbox{width:min(92vw,560px);padding:10px 10px 10px 26px;background:var(--panel);border-radius:22px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.board{position:relative;aspect-ratio:1;border-radius:12px;overflow:visible}
+.grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(10,1fr);grid-template-rows:repeat(10,1fr);
+  border-radius:12px;overflow:hidden;border:3px solid #0006}
+.cell{position:relative;display:flex;align-items:flex-start;justify-content:flex-start;padding:2px 4px;
+  font-size:clamp(.5rem,1.9vw,.8rem);font-weight:500;color:#2a2360b0}
+.cell.a{background:var(--c1)}.cell.b{background:var(--c2)}
+svg.over{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.tok{position:absolute;width:5.2%;aspect-ratio:1;border-radius:50%;border:2.5px solid #fff;
+  box-shadow:0 3px 6px rgba(0,0,0,.5);transform:translate(-50%,-50%);
+  transition:left .7s cubic-bezier(.5,1.4,.5,1),top .7s cubic-bezier(.5,1.4,.5,1)}
+.tok.p1{background:var(--p1)}.tok.p2{background:var(--p2)}
+.side{width:min(92vw,360px);display:flex;flex-direction:column;gap:12px}
+.card{background:var(--panel);border-radius:18px;padding:14px 16px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.players{display:flex;gap:10px}
+.pl{flex:1;border-radius:14px;padding:8px 10px;border:3px solid transparent;background:#ffffff12}
+.pl.active{border-color:var(--btn)}
+.pl b{display:flex;align-items:center;gap:6px}
+.dot{width:14px;height:14px;border-radius:50%;display:inline-block}
+.pl span{color:var(--muted);font-size:.9rem}
+.dicearea{display:flex;align-items:center;gap:14px}
+.dice{width:76px;height:76px;border-radius:16px;background:#fff;color:#2a2360;display:grid;place-items:center;
+  font-size:3.6rem;line-height:1;box-shadow:0 5px 0 #c9c2e8}
+.dice.roll{animation:shake .12s infinite}
+  .big{margin-left:auto;font-size:4.6rem;font-weight:700;line-height:1;min-width:1.2ch;text-align:center;color:var(--btn)}
+@keyframes shake{50%{transform:rotate(12deg) translateY(-3px)}}
+button{font:inherit;font-weight:700;cursor:pointer;border:0;border-radius:14px;padding:12px 18px;
+  background:var(--btn);color:var(--btnink);box-shadow:0 5px 0 #b57f00;transition:transform .08s,box-shadow .08s}
+button:hover:not(:disabled){filter:brightness(1.08)}
+button:active:not(:disabled){transform:translateY(4px);box-shadow:0 1px 0 #b57f00}
+button:disabled{opacity:.5;cursor:not-allowed}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.log{height:170px;overflow:auto;font-size:.92rem;display:flex;flex-direction:column;gap:3px}
+.log div{padding:3px 8px;border-radius:8px;background:#ffffff10}
+.log .s{color:#ff9d7d}.log .l{color:#7fe0a3}.log .w{color:#ffd166;font-weight:700}
+.rules{font-size:.85rem;color:var(--muted);margin:0;padding-left:18px}
+.win{position:fixed;inset:0;background:#000a;display:none;place-items:center;z-index:9}
+.win.show{display:grid}
+.win div{background:var(--panel);padding:28px 34px;border-radius:22px;text-align:center;animation:pop .5s cubic-bezier(.5,1.6,.5,1)}
+.win h2{margin:0 0 6px;font-size:2rem}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+@media (prefers-reduced-motion:reduce){.tok{transition:none}.dice.roll,.win div{animation:none}}
